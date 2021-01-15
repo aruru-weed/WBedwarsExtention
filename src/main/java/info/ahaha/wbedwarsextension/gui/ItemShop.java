@@ -1,4 +1,4 @@
-package info.ahaha.wbedwarsextension;
+package info.ahaha.wbedwarsextension.gui;
 
 import info.ahaha.bedwars.API.Game;
 import info.ahaha.guiapi.GUI;
@@ -70,7 +70,7 @@ public class ItemShop extends GUI implements DragParts.dragRowOK {
         addContent(new singItem("Armors", 3));
         addContent(new LeatherArmorSeller(game, IconFactory.Make(Material.LEATHER_LEGGINGS, ChatColor.MAGIC + "" + ChatColor.UNDERLINE + "Random Color Lether Armors"), 12,
                 new ItemStack(Material.IRON_INGOT, 10)));
-        addContent(new IronArmorSeller(game, IconFactory.Make(Material.IRON_LEGGINGS, ChatColor.GRAY + "Iron Armors"), 12 + 9 * 1,
+        addContent(new IronArmorSeller(game, IconFactory.Make(Material.IRON_LEGGINGS, ChatColor.GRAY + "Iron Armors"), 12 + 9,
                 new ItemStack(Material.GOLD_INGOT, 8)));
         addContent(new DiaArmorSeller(game, IconFactory.Make(Material.DIAMOND_LEGGINGS, ChatColor.AQUA + "Diamond Armors"), 12 + 9 * 2,
                 4,

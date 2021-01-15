@@ -4,7 +4,7 @@ import info.ahaha.bedwars.API.BedwarsAPI;
 import info.ahaha.wbedwarsextension.Items.armor.ArmorType;
 import info.ahaha.wbedwarsextension.Listeners.*;
 import info.ahaha.wbedwarsextension.cmd.wbe_main;
-import org.bukkit.Material;
+import info.ahaha.wbedwarsextension.gui.ItemShop;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;

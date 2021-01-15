@@ -1,7 +1,7 @@
 package info.ahaha.wbedwarsextension.cmd;
 
 import info.ahaha.bedwars.API.Game;
-import info.ahaha.wbedwarsextension.ItemShop;
+import info.ahaha.wbedwarsextension.gui.ItemShop;
 import info.ahaha.wbedwarsextension.WBedwarsExtension;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

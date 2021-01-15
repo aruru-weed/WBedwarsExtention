@@ -12,8 +12,7 @@ import org.bukkit.util.Vector;
 import java.util.Random;
 
 import static java.lang.Math.*;
-import static org.bukkit.Bukkit.getPluginManager;
-import static org.bukkit.Bukkit.getScheduler;
+import static org.bukkit.Bukkit.*;
 
 public class IppouTuukouArmorSeller extends AbstractSellerRequireHead {
     public IppouTuukouArmorSeller(Icon _icon, int _Slot, int Amount, ItemStack... _require) {
@@ -56,18 +55,21 @@ public class IppouTuukouArmorSeller extends AbstractSellerRequireHead {
                                 entity.getLocation().getZ() - shooter.getLocation().getZ(),
                                 entity.getLocation().getX() - shooter.getLocation().getX()
                         ),
-                                power = pow(pow(entity.getVelocity().getX(), 2) + pow(entity.getVelocity().getZ(), 2), 0.5);
+                                power = pow(pow(entity.getVelocity().getX(), 2) + pow(entity.getVelocity().getZ(), 2), 0.5),
+                                distance = pow(pow(entity.getLocation().getZ() - shooter.getLocation().getZ(), 2) +
+                                        pow(entity.getLocation().getX() - shooter.getLocation().getX(), 2), 0.5);
 
-                        double time =
-                                pow(pow(entity.getLocation().getZ() - shooter.getLocation().getZ(), 2) + pow(entity.getLocation().getX() - shooter.getLocation().getX(), 2), 0.5) / power;
+                        double time = distance / power;
 
-                        double a = 0.5;
+                        double a = 0.05;
 
                         double xVec = (entity.getLocation().getY() - shooter.getLocation().getY()) / time
                                 + 0.5 * a * time;
 
+                        getLogger().info(xVec / 20 + " : " + time + " : " + power);
+
                         entity.setVelocity(new Vector(cos(deg) * -power
-                                , xVec
+                                , xVec / 20
                                 , sin(deg) * -power));
                     }
             getScheduler().runTaskLater(getPluginManager().getPlugin("WBedwarsExtension"), this, 2/*r.nextInt(5) + 5*/);

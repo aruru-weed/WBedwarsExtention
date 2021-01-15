@@ -40,11 +40,12 @@ public class HitProjectileListener implements Listener {
                 break;
             }
             case ARROW: {
-                switch (ChatColor.stripColor(e.getEntity().getCustomName())) {
-                    case "LightningBow":
-                        e.getEntity().getWorld().spigot().strikeLightning(e.getEntity().getLocation(), false);
-                        return;
-                }
+                if (e.getEntity().getCustomName() != null)
+                    switch (ChatColor.stripColor(e.getEntity().getCustomName())) {
+                        case "LightningBow":
+                            e.getEntity().getWorld().spigot().strikeLightning(e.getEntity().getLocation(), false);
+                            return;
+                    }
 
                 break;
             }
@@ -71,7 +72,7 @@ public class HitProjectileListener implements Listener {
                                 ItemStack poopItem = e.getItem().clone();
                                 poopItem.setAmount(1);
                                 getScheduler().runTaskLater(getPluginManager().getPlugin("WBedwarsExtension"), () -> {
-                                    Item poop = (Item) projectile.getWorld().dropItem(projectile.getLocation(), poopItem);
+                                    Item poop = projectile.getWorld().dropItem(projectile.getLocation(), poopItem);
 
                                     projectile.setPassenger(poop);
 
@@ -131,8 +132,7 @@ public class HitProjectileListener implements Listener {
                                 return;
                             }
                             case SNOW_BALL:
-                                if (c == null)
-                                    c = Snowball.class;
+                                c = Snowball.class;
                             case EGG:
                                 if (c == null)
                                     c = Snowball.class;
@@ -153,7 +153,7 @@ public class HitProjectileListener implements Listener {
                                     for (int i = 0; i < 3; i++) {
                                         Wolf wolf = (Wolf) e.getPlayer().getWorld().spawnEntity(e.getPlayer().getLocation(), EntityType.WOLF);
                                         wolf.setOwner(e.getPlayer());
-                                        wolf.setCustomName("Helper for "+e.getPlayer().getName());
+                                        wolf.setCustomName("Helper for " + e.getPlayer().getName());
                                         DyeColor color = DyeColor.BLACK;
 
                                         switch (team.getColor()) {
