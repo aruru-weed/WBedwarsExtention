@@ -11,8 +11,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class AxeSeller extends AbstractPerPlayerItem {
-    public AxeSeller(Game game, int slot) {
+public class PickaxeSeller extends AbstractPerPlayerItem {
+    public PickaxeSeller(Game game, int slot) {
         super(slot);
         this.game = game;
 
