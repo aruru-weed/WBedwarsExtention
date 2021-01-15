@@ -1,0 +1,15 @@
+name: WBedwarsExtension
+version: ${project.version}
+main: info.ahaha.wbedwarsextension.WBedwarsExtension
+api-version: 1.16
+depend: [ GUIAPI,Bedwars ]
+
+permissions:
+  wbe.op:
+    description: "WBExtension"
+
+commands:
+  wbwe:
+    description: "Extension"
+    permission: wbe.op
+    usage: "/wbwe"
