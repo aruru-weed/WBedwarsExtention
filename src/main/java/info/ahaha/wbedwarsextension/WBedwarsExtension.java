@@ -5,6 +5,7 @@ import info.ahaha.wbedwarsextension.Items.armor.ArmorType;
 import info.ahaha.wbedwarsextension.Listeners.*;
 import info.ahaha.wbedwarsextension.cmd.wbe_main;
 import info.ahaha.wbedwarsextension.gui.ItemShop;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -32,6 +33,7 @@ public final class WBedwarsExtension extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DeathListener(), this);
         getServer().getPluginManager().registerEvents(new StartListener(), this);
         getServer().getPluginManager().registerEvents(new ArchListener(), this);
+        getServer().getPluginManager().registerEvents(new DropListener(), this);
     }
 
     public static Map<Integer, PerIdData> getData() {
@@ -44,50 +46,66 @@ public final class WBedwarsExtension extends JavaPlugin {
     }
 
     public static class PerIdData {
+        public static class PerPlayerData {
+            ArmorType armor;
+            int Axe = 0;
+            int Pickaxe = 0;
+            boolean shears = false;
+
+            public int getAxe() {
+                return Axe;
+            }
+
+            public int getPickaxe() {
+                return Pickaxe;
+            }
+
+            public ArmorType getArmor() {
+                return armor;
+            }
+
+            public boolean hasShears() {
+                return shears;
+            }
+
+            public void setAxe(int axe) {
+                Axe = axe;
+            }
+
+            public void setPickaxe(int pickaxe) {
+                Pickaxe = pickaxe;
+            }
+
+            public void setShears(boolean shears) {
+                this.shears = shears;
+            }
+
+            public void setArmor(ArmorType armor) {
+                this.armor = armor;
+            }
+        }
+
         ItemShop itemShop;
-        Map<UUID, ArmorType> armorTypes = new HashMap<>();
-        int Axe = 0;
-        int Pickaxe = 0;
-        boolean shears = false;
+        Map<UUID, PerPlayerData> playerDataMap = new HashMap<>();
 
         public ItemShop getItemShop() {
             return itemShop;
-        }
-
-        public Map<UUID, ArmorType> getArmorTypes() {
-            return armorTypes;
         }
 
         public void setItemShop(ItemShop itemShop) {
             this.itemShop = itemShop;
         }
 
-        public void setArmorTypes(Map<UUID, ArmorType> armorTypes) {
-            this.armorTypes = armorTypes;
+        public Map<UUID, PerPlayerData> getPlayerDataMap() {
+            return playerDataMap;
         }
 
-        public int getAxe() {
-            return Axe;
+        public void setPlayerDataMap(Map<UUID, PerPlayerData> playerDataMap) {
+            this.playerDataMap = playerDataMap;
         }
 
-        public int getPickaxe() {
-            return Pickaxe;
-        }
-
-        public boolean hasShears() {
-            return shears;
-        }
-
-        public void setAxe(int axe) {
-            Axe = axe;
-        }
-
-        public void setPickaxe(int pickaxe) {
-            Pickaxe = pickaxe;
-        }
-
-        public void setShears(boolean shears) {
-            this.shears = shears;
+        public PerPlayerData getPlayerData(Player player) {
+            return playerDataMap.get(player.getUniqueId());
         }
     }
 }

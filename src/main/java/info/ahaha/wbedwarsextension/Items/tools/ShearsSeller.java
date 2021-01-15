@@ -18,7 +18,7 @@ public class ShearsSeller extends AbstractSeller {
 
     @Override
     public void run(Player player) throws CanNotDo {
-        WBedwarsExtension.PerIdData data = WBedwarsExtension.getData().get(game.getID());
+        WBedwarsExtension.PerIdData.PerPlayerData data = WBedwarsExtension.getData().get(game.getID()).getPlayerData(player);
         if (data.hasShears())
             throw new CanNotDo();
         data.setShears(true);

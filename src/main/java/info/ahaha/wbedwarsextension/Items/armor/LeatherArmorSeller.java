@@ -24,29 +24,10 @@ public class LeatherArmorSeller extends AbstractSeller {
     public void run(Player player) {
         Random r = new Random();
         Color color = Color.fromRGB(r.nextInt(16 * 16 + 1), r.nextInt(16 * 16 + 1), r.nextInt(16 * 16 + 1));
-        LeatherArmorMeta meta;
-        ItemStack leg = new ItemStack(Material.LEATHER_LEGGINGS);
-        meta = (LeatherArmorMeta) leg.getItemMeta();
-        meta.setColor(color);
-        leg.setItemMeta(meta);
-        ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
-        meta = (LeatherArmorMeta) boots.getItemMeta();
-        meta.setColor(color);
-        boots.setItemMeta(meta);
-        ItemStack helmet = new ItemStack(Material.LEATHER_HELMET), chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
-        meta = (LeatherArmorMeta) helmet.getItemMeta();
-        meta.setColor(color);
-        helmet.setItemMeta(meta);
-        meta = (LeatherArmorMeta) chestplate.getItemMeta();
-        meta.setColor(color);
-        chestplate.setItemMeta(meta);
-        player.getInventory().setChestplate(chestplate);
-        player.getInventory().setHelmet(helmet);
-        player.getInventory().setLeggings(leg);
-        player.getInventory().setBoots(boots);
+        setAll(player, color);
     }
 
-    public static Color GetTeamColor(Team team){
+    public static Color GetTeamColor(Team team) {
         Color color = Color.BLACK;
         switch (team.getColor()) {
             case GOLD:
@@ -100,7 +81,7 @@ public class LeatherArmorSeller extends AbstractSeller {
         return color;
     }
 
-    public static void setAll(Player player,Color color) {
+    public static void setAll(Player player, Color color) {
         LeatherArmorMeta meta;
         ItemStack leg = new ItemStack(Material.LEATHER_LEGGINGS);
         meta = (LeatherArmorMeta) leg.getItemMeta();
