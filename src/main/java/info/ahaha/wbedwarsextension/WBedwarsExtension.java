@@ -48,7 +48,7 @@ public final class WBedwarsExtension extends JavaPlugin {
         Map<UUID, ArmorType> armorTypes = new HashMap<>();
         int Axe = 0;
         int Pickaxe = 0;
-        boolean share = false;
+        boolean shears = false;
 
         public ItemShop getItemShop() {
             return itemShop;
@@ -74,8 +74,8 @@ public final class WBedwarsExtension extends JavaPlugin {
             return Pickaxe;
         }
 
-        public boolean isShare() {
-            return share;
+        public boolean hasShears() {
+            return shears;
         }
 
         public void setAxe(int axe) {
@@ -86,8 +86,8 @@ public final class WBedwarsExtension extends JavaPlugin {
             Pickaxe = pickaxe;
         }
 
-        public void setShare(boolean share) {
-            this.share = share;
+        public void setShears(boolean shears) {
+            this.shears = shears;
         }
     }
 }

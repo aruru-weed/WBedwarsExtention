@@ -11,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import static info.ahaha.wbedwarsextension.Items.SellItem.getMaterialColor;
@@ -22,7 +21,11 @@ public abstract class AbstractSeller extends GUI_Item {
         this(_icon, _Slot, new ArrayList<>(Arrays.asList(_require)));
     }
 
-    public static class NotRequire extends Exception{}
+    public static class NotRequire extends Exception {
+    }
+
+    public static class CanNotDo extends Exception {
+    }
 
     public AbstractSeller(Icon _icon, int _Slot, List<ItemStack> _require) {
         super(_icon, _Slot);
@@ -45,21 +48,21 @@ public abstract class AbstractSeller extends GUI_Item {
                     else
                         throw new NotRequire();
                 }
+                run(player);
                 for (ItemStack item : require)
                     if (!Item_Utils.removeItems(player.getInventory(), item, item.getAmount()))
                         getLogger().info("Item remove error");
-                run(player);
-
                 player.playSound(player.getLocation(), Sound.NOTE_PIANO, 0.5f, 5);
                 if (getIcon().getName() != null)
                     player.sendMessage(ChatColor.GREEN + "Buy " + getIcon().getName());
             } catch (NotRequire e) {
                 player.sendMessage(ChatColor.RED + "You don`t have required item");
+            } catch (CanNotDo e) {
             }
         });
     }
 
-    public abstract void run(Player player);
+    public abstract void run(Player player) throws CanNotDo;
 
     List<ItemStack> require;
 }

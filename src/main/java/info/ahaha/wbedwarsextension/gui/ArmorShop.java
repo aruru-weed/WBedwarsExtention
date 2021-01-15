@@ -22,7 +22,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ArmorShop extends GUI implements DragParts.dragRowOK {
     public ArmorShop(Game _game) {
-        super(54, "WBedwars-ItemShop-" + _game.getName());
+        super(54, "WBedwars-ArmorShop-" + _game.getName());
         this.game = _game;
 
         getUsersInventoryRuns().setDefault(false, (AccepterAttributes.noAug) () -> {
