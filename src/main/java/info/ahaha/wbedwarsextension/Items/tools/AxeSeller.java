@@ -3,11 +3,9 @@ package info.ahaha.wbedwarsextension.Items.tools;
 import info.ahaha.bedwars.API.Game;
 import info.ahaha.guiapi.abstract_GUI_Item;
 import info.ahaha.guiapi.v2.Icon.Icon;
-import info.ahaha.guiapi.v2.Icon.IconFactory;
 import info.ahaha.guiapi.v2.extended.items.AbstractPerPlayerItem;
 import info.ahaha.wbedwarsextension.Items.AbstractSeller;
 import info.ahaha.wbedwarsextension.WBedwarsExtension;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,7 +25,7 @@ public class AxeSeller extends AbstractPerPlayerItem {
 
         @Override
         public void run(Player player) {
-            WBedwarsExtension.PerIdData data = WBedwarsExtension.getData().get(game.getID());
+            WBedwarsExtension.PerIdData.PerPlayerData data = WBedwarsExtension.getData().get(game.getID()).getPlayerData(player);
             data.setAxe(data.getAxe() + 1);
         }
     }
@@ -44,10 +42,6 @@ public class AxeSeller extends AbstractPerPlayerItem {
     }
 
     public static ItemStack get(int num) {
-        switch (num) {
-            break;
-            case 1:
-                return IconFactory.Make(Material.WOOD_AXE).addEnchant(new Icon.EnchantMeta(E))
-        }
+        return null;
     }
 }

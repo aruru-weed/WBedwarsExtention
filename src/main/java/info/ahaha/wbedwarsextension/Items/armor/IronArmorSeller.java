@@ -20,7 +20,7 @@ public class IronArmorSeller extends AbstractSeller {
     @Override
     public void run(Player player) {
         set(player);
-        getData().get(game.getID()).getArmorTypes().put(player.getUniqueId(),ArmorType.Iron);
+        getData().get(game.getID()).getPlayerData(player).setArmor(ArmorType.Iron);
     }
 
     public static void set(Player player){

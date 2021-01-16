@@ -1,16 +1,20 @@
 package info.ahaha.wbedwarsextension;
 
 import info.ahaha.bedwars.API.BedwarsAPI;
+import info.ahaha.guiapi.GUIAPI;
 import info.ahaha.wbedwarsextension.Items.armor.ArmorType;
 import info.ahaha.wbedwarsextension.Listeners.*;
 import info.ahaha.wbedwarsextension.cmd.wbe_main;
 import info.ahaha.wbedwarsextension.gui.ItemShop;
+import info.ahaha.wbedwarsextension.gui.TrapShop;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import static org.bukkit.Bukkit.getScheduler;
 
 public final class WBedwarsExtension extends JavaPlugin {
     static BedwarsAPI api;
@@ -85,7 +89,9 @@ public final class WBedwarsExtension extends JavaPlugin {
             }
         }
 
+        int SearchID = -1;
         ItemShop itemShop;
+        TrapShop trapShop;
         Map<UUID, PerPlayerData> playerDataMap = new HashMap<>();
 
         public ItemShop getItemShop() {
@@ -94,6 +100,14 @@ public final class WBedwarsExtension extends JavaPlugin {
 
         public void setItemShop(ItemShop itemShop) {
             this.itemShop = itemShop;
+        }
+
+        public TrapShop getTrapShop() {
+            return trapShop;
+        }
+
+        public void setTrapShop(TrapShop trapShop) {
+            this.trapShop = trapShop;
         }
 
         public Map<UUID, PerPlayerData> getPlayerDataMap() {
@@ -106,6 +120,21 @@ public final class WBedwarsExtension extends JavaPlugin {
 
         public PerPlayerData getPlayerData(Player player) {
             return playerDataMap.get(player.getUniqueId());
+        }
+
+        public int getSearchID() {
+            return SearchID;
+        }
+
+        public void setSearchID(int searchID) {
+            SearchID = searchID;
+        }
+
+        public void remove() {
+            getScheduler().cancelTask(SearchID);
+            trapShop.Unregister();
+            itemShop.Unregister();
+            playerDataMap.clear();
         }
     }
 }

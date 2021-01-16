@@ -11,10 +11,9 @@ public class ShiftClickAccepter implements Runs.Accepter {
     public void accept(InventoryClickEvent e) {
         e.setCancelled(true);
 
-        // 52,53,54
         ItemStack item = e.getInventory().getContents()[e.getSlot()];
         if (item != null) {
-            for (int slot : Arrays.asList(52, 53, 54))
+            for (int slot : Arrays.asList(51, 53, 55))
                 if (e.getInventory().getItem(slot) == null) {
                     e.getInventory().setItem(slot, e.getCurrentItem());
                     e.getWhoClicked().getInventory().clear(e.getSlot());
