@@ -1,15 +1,16 @@
 package info.ahaha.wbedwarsextension;
 
 import info.ahaha.bedwars.API.BedwarsAPI;
-import info.ahaha.guiapi.GUIAPI;
 import info.ahaha.wbedwarsextension.Items.armor.ArmorType;
 import info.ahaha.wbedwarsextension.Listeners.*;
 import info.ahaha.wbedwarsextension.cmd.wbe_main;
 import info.ahaha.wbedwarsextension.gui.ItemShop;
+import info.ahaha.wbedwarsextension.gui.ShopType;
 import info.ahaha.wbedwarsextension.gui.TrapShop;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -19,6 +20,18 @@ import static org.bukkit.Bukkit.getScheduler;
 public final class WBedwarsExtension extends JavaPlugin {
     static BedwarsAPI api;
     static Map<Integer, PerIdData> data = new HashMap<>();
+
+    public static class ShortCutData implements Serializable {
+        public ShortCutData(ShopType type, int slot) {
+            this.type = type;
+            this.slot = slot;
+        }
+
+        public ShopType type;
+        public int slot;
+    }
+
+    static Map<UUID, Map<Integer, ShortCutData>> PerPlayerShortCutData;
 
     public static BedwarsAPI getApi() {
         return api;
@@ -38,10 +51,16 @@ public final class WBedwarsExtension extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new StartListener(), this);
         getServer().getPluginManager().registerEvents(new ArchListener(), this);
         getServer().getPluginManager().registerEvents(new DropListener(), this);
+        getServer().getPluginManager().registerEvents(new JoinListener(), this);
+        getServer().getPluginManager().registerEvents(new QuitListener(), this);
     }
 
     public static Map<Integer, PerIdData> getData() {
         return data;
+    }
+
+    public static Map<UUID, Map<Integer, ShortCutData>> getPerPlayerShortCutData() {
+        return PerPlayerShortCutData;
     }
 
     @Override

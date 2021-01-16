@@ -1,4 +1,4 @@
-package info.ahaha.wbedwarsextension;
+package info.ahaha.wbedwarsextension.Items;
 
 import info.ahaha.bedwars.API.Game;
 import info.ahaha.bedwars.API.Team;

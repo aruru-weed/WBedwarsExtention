@@ -4,7 +4,6 @@ import info.ahaha.bedwars.API.Game;
 import info.ahaha.bedwars.API.Team;
 import info.ahaha.guiapi.abstract_GUI_Item;
 import info.ahaha.guiapi.v2.Icon.IconFactory;
-import info.ahaha.wbedwarsextension.Per_Team_Item;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
